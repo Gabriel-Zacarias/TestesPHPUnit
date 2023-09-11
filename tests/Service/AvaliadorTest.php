@@ -15,6 +15,7 @@ class AvaliadorTest extends TestCase
     protected function setUp(): void
     {
          $this->leiloeiro = new Avaliador();
+         // Roda sempre antes de chamar um teste
     }
 
 
@@ -22,6 +23,8 @@ class AvaliadorTest extends TestCase
      * @dataProvider leilaoEmOrdemCrescente
      * @dataProvider leilaoEmOrdemDecrescente
      * @dataProvider leilaoEmOrdemAleatoria
+     * DataProvider -> estamos recebendo esses itens como parametro da funcao abaixo
+     * O phpUnit chama eles 
      */
     public function testAvaliadorDeveEncontrarOMaiorValorDeLances(Leilao $leilao)
     {
@@ -32,7 +35,6 @@ class AvaliadorTest extends TestCase
 
         // Assert - Then / Verificamos se a saída é a esperada
         self::assertEquals(2500, $maiorValor);
-
     }
 
     /**
