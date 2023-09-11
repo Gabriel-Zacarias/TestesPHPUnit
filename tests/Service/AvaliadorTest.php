@@ -12,19 +12,33 @@ class AvaliadorTest extends TestCase
 {
     private $leiloeiro;
 
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-         $this->leiloeiro = new Avaliador();
-         // Roda sempre antes de chamar um teste
+        //Método executado uma vez só, antes de todos os testes da classe
     }
 
+    protected function setUp(): void
+    {
+        $this->leiloeiro = new Avaliador();
+        // Método executado antes de cada teste da classe
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        // Método executado uma vez só, após todos os testes da classe
+    }
+
+    public function tearDown(): void
+    {
+        //  Método executado após cada teste da classe
+    }
 
     /**
      * @dataProvider leilaoEmOrdemCrescente
      * @dataProvider leilaoEmOrdemDecrescente
      * @dataProvider leilaoEmOrdemAleatoria
      * DataProvider -> estamos recebendo esses itens como parametro da funcao abaixo
-     * O phpUnit chama eles 
+     * O phpUnit chama eles
      */
     public function testAvaliadorDeveEncontrarOMaiorValorDeLances(Leilao $leilao)
     {
@@ -60,7 +74,7 @@ class AvaliadorTest extends TestCase
      * @dataProvider leilaoEmOrdemDecrescente
      * @dataProvider leilaoEmOrdemAleatoria
      */
-    public  function testAvaliadorDeveBuscar3maioresValores(Leilao $leilao)
+    public function testAvaliadorDeveBuscar3maioresValores(Leilao $leilao)
     {
         // Act - When / Executamos o código a ser testado
         $this->leiloeiro->avalia($leilao);
